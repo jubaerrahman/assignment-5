@@ -12,7 +12,6 @@ function hideLoader(){
 }
 
 
-// change active tab
 function setActiveTab(id){
 
 let tabs = document.querySelectorAll(".tab")
@@ -27,7 +26,6 @@ document.getElementById(id).classList.add("tab-active")
 
 
 
-// load all issues
 function loadIssues(){
 
 setActiveTab("allTab")
@@ -50,7 +48,6 @@ hideLoader()
 
 
 
-// open issues
 function loadOpen(){
 
 setActiveTab("openTab")
@@ -77,7 +74,6 @@ hideLoader()
 
 
 
-// closed issues
 function loadClosed(){
 
 setActiveTab("closedTab")
@@ -108,7 +104,6 @@ hideLoader()
 
 
 
-// render cards
 function renderIssues(issues){
 
 container.innerHTML = ""
@@ -128,7 +123,6 @@ if(status === "open"){
 }
 
 
-// priority color
 let priorityColor = "badge-info"
 
 if(issue.priority === "HIGH"){
@@ -139,7 +133,6 @@ else if(issue.priority === "MEDIUM"){
 }
 
 
-// labels
 let labels = ""
 
 if(issue.labels){
@@ -151,7 +144,6 @@ if(issue.labels){
 }
 
 
-// dates
 let createdDate =
 new Date(issue.createdAt).toLocaleDateString()
 
@@ -160,7 +152,6 @@ new Date(issue.updatedAt || issue.createdAt).toLocaleDateString()
 
 
 
-// card
 let card = document.createElement("div")
 
 card.className =
@@ -220,7 +211,6 @@ container.appendChild(card)
 
 
 
-// open issue modal
 function openIssue(id){
 
 fetch("https://phi-lab-server.vercel.app/api/v1/lab/issue/"+id)
@@ -249,7 +239,6 @@ issue.author
 
 
 
-// priority
 let p = document.getElementById("modalPriority")
 
 p.innerText = issue.priority
@@ -266,7 +255,6 @@ else{
 
 
 
-// labels
 let labelBox = document.getElementById("modalLabels")
 
 labelBox.innerHTML = ""
@@ -287,8 +275,6 @@ document.getElementById("issueModal").checked = true
 }
 
 
-
-// search
 function searchIssues(){
 
 let text =
@@ -315,7 +301,6 @@ hideLoader()
 
 
 
-// search by enter key
 document.getElementById("searchInput")
 .addEventListener("keypress",function(e){
 
@@ -327,5 +312,4 @@ document.getElementById("searchInput")
 
 
 
-// initial load
 loadIssues()
