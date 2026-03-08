@@ -1,163 +1,113 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="light">
-
-<head>
-
-<meta charset="UTF-8">
-<title>Issues Dashboard</title>
-
-<link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-
-</head>
-
-<body class="bg-gray-100">
-
-
-
-<div class="navbar bg-white shadow px-6">
-
-<div class="flex-1 flex items-center gap-2">
-
-<img src="assets/github-logo.png" class="w-7">
-
-<h1 class="font-bold text-lg">
-GitHub Issues Tracker
-</h1>
-
-</div>
-
-<div class="flex gap-2">
-
-<input id="searchInput"
-type="text"
-placeholder="Search issues..."
-class="input input-bordered">
-
-<button onclick="searchIssues()" class="btn btn-primary">
-Search
-</button>
-
-</div>
-
-</div>
-
-
-<div class="max-w-7xl mx-auto p-6">
-
-<div class="tabs tabs-boxed mb-6">
-
-<button id="allTab" class="tab tab-active" onclick="loadIssues()">All</button>
-<button id="openTab" class="tab" onclick="loadOpen()">Open</button>
-<button id="closedTab" class="tab" onclick="loadClosed()">Closed</button>
-
-</div>
-
-
-
-<div class="flex justify-between mb-6">
-
-<div class="flex items-center gap-2">
-
-
-
-<p id="issueCount" class="font-bold">
-Issues
-</p>
-
-</div>
-
-<div class="flex gap-4 text-sm">
-
-<span class="flex items-center gap-1">
-<span class="w-3 h-3 bg-green-500 rounded-full"></span>
-Open
-</span>
-
-<span class="flex items-center gap-1">
-<span class="w-3 h-3 bg-purple-500 rounded-full"></span>
-Closed
-</span>
-
-</div>
-
-</div>
-
-
-<!-- Loader -->
-
-<div id="loader" class="flex justify-center py-10 hidden">
-
-<span class="loading loading-spinner loading-lg"></span>
-
-</div>
-
-
-
-<div id="issuesContainer"
-class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-</div>
-
-</div>
-
-
-
-<input type="checkbox" id="issueModal" class="modal-toggle">
-
-<div class="modal">
-
-<div class="modal-box max-w-3xl">
-
-<h3 id="modalTitle" class="text-2xl font-bold mb-3"></h3>
-
-<div class="flex items-center gap-3 text-sm text-gray-500 mb-4">
-
-<span id="modalStatus" class="badge badge-success">Opened</span>
-
-<span id="modalAuthor"></span>
-
-<span id="modalDate"></span>
-
-</div>
-
-
-<div id="modalLabels" class="flex gap-2 mb-4"></div>
-
-
-<p id="modalDesc" class="text-gray-600 mb-6"></p>
-
-
-<div class="bg-gray-100 rounded-lg p-5 flex justify-between items-center">
-
-<div>
-<p class="text-sm text-gray-500">Assignee:</p>
-<p id="modalAssignee" class="font-semibold"></p>
-</div>
-
-<div>
-<p class="text-sm text-gray-500">Priority:</p>
-<span id="modalPriority" class="badge badge-error"></span>
-</div>
-
-</div>
-
-
-<div class="modal-action">
-
-<label for="issueModal" class="btn btn-primary">
-Close
-</label>
-
-</div>
-
-</div>
-
-</div>
-
-
-<script src="js/issues.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Issues Dashboard</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-100">
+    <div class="navbar bg-white shadow px-6">
+      <div class="flex-1 flex items-center gap-2">
+        <img src="./assets/github-logo.png" class="w-7" />
+
+        <h1 class="font-bold text-lg">GitHub Issues Tracker</h1>
+      </div>
+
+      <div class="flex gap-2">
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search issues"
+          class="input input-bordered"
+        />
+
+        <button onclick="searchIssues()" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto p-6">
+      <div class="tabs tabs-boxed mb-6">
+        <button id="allTab" class="tab tab-active" onclick="loadIssues()">
+          All
+        </button>
+        <button id="openTab" class="tab" onclick="loadOpen()">Open</button>
+        <button id="closedTab" class="tab" onclick="loadClosed()">
+          Closed
+        </button>
+      </div>
+
+      <div class="flex justify-between mb-6">
+        <div class="flex items-center gap-2">
+          <p id="issueCount" class="font-bold">Issues</p>
+        </div>
+
+        <div class="flex gap-4 text-sm">
+          <span class="flex items-center gap-1">
+            <span class="w-3 h-3 bg-green-500 rounded-full"></span>
+            Open
+          </span>
+
+          <span class="flex items-center gap-1">
+            <span class="w-3 h-3 bg-purple-500 rounded-full"></span>
+            Closed
+          </span>
+        </div>
+      </div>
+
+      <div id="loader" class="flex justify-center py-10 hidden">
+        <span class="loading loading-spinner loading-lg"></span>
+      </div>
+
+      <div
+        id="issuesContainer"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      ></div>
+    </div>
+
+    <input type="checkbox" id="issueModal" class="modal-toggle" />
+
+    <div class="modal">
+      <div class="modal-box max-w-3xl">
+        <h3 id="modalTitle" class="text-2xl font-bold mb-3"></h3>
+
+        <div class="flex items-center gap-3 text-sm text-gray-500 mb-4">
+          <span id="modalStatus" class="badge badge-success">Opened</span>
+
+          <span id="modalAuthor"></span>
+
+          <span id="modalDate"></span>
+        </div>
+
+        <div id="modalLabels" class="flex gap-2 mb-4"></div>
+
+        <p id="modalDesc" class="text-gray-600 mb-6"></p>
+
+        <div
+          class="bg-gray-100 rounded-lg p-5 flex justify-between items-center"
+        >
+          <div>
+            <p class="text-sm text-gray-500">Assignee:</p>
+            <p id="modalAssignee" class="font-semibold"></p>
+          </div>
+
+          <div>
+            <p class="text-sm text-gray-500">Priority:</p>
+            <span id="modalPriority" class="badge badge-error"></span>
+          </div>
+        </div>
+
+        <div class="modal-action">
+          <label for="issueModal" class="btn btn-primary"> Close </label>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/issues.js"></script>
+  </body>
 </html>
-
