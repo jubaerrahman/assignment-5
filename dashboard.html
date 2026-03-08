@@ -13,13 +13,12 @@
 
 <body class="bg-gray-100">
 
-<!-- NAVBAR -->
 
 <div class="navbar bg-white shadow px-6">
 
 <div class="flex-1 flex items-center gap-2">
 
-<img src="assets/github-logo.png" class="w-7">
+<img src="./assets/github-logo.png" class="w-7">
 
 <h1 class="font-bold text-lg">
 GitHub Issues Tracker
@@ -44,6 +43,15 @@ Search
 
 
 <div class="max-w-7xl mx-auto p-6">
+
+
+<div class="tabs tabs-boxed mb-6">
+
+<button id="allTab" class="tab tab-active" onclick="loadIssues()">All</button>
+<button id="openTab" class="tab" onclick="loadOpen()">Open</button>
+<button id="closedTab" class="tab" onclick="loadClosed()">Closed</button>
+
+</div>
 
 
 
